@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="DiplomPrint.View.EditStudentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:local="clr-namespace:DiplomPrint.View"
+             xmlns:vm ="clr-namespace:DiplomPrint.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" Style="{StaticResource TabControlStyle}">
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Студент</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" ShowGridLines="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.ColumnSpan="7" Grid.Row="0"
+                                                 x:Name="fioTxt"
+                                 materialDesign:HintAssist.Hint="Фамилия Имя Отчество"
+                                                     Text="{Binding Path=Diplom.FullName}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <DatePicker Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="4"
+                                    VerticalAlignment="Bottom"
+                                    Height="25"
+                                    materialDesign:HintAssist.Hint="Дата рождения"
+                                                        SelectedDate="{Binding Path=Diplom.BirthDate}"
+                                                        
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                            <TextBox Grid.ColumnSpan="12" Grid.Row="1"
+                                 materialDesign:HintAssist.Hint="Документ о предшествующем уровне образовании"
+                                                     Text="{Binding Path=Diplom.PreviousLevelEducation}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="4" Grid.Row="2"
+                                 materialDesign:HintAssist.Hint="Регистрационный номер"
+                                                     Text="{Binding Path=Diplom.RegistrationNumber}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <DatePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2"
+                                    VerticalAlignment="Bottom"
+                                    Height="30"
+                                    materialDesign:HintAssist.Hint="Дата выдачи"
+                                                        SelectedDate="{Binding Path=Diplom.ExtraditionDate}"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                            <ToggleButton Grid.Row="2" Grid.Column="8"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Bottom"
+                                                          IsChecked="{Binding Path=Diplom.ExcellentAttribute}"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          ToolTip="Отличие"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Row="3"
+                                 materialDesign:HintAssist.Hint="Серия диплома"
+                                                     Text="{Binding Path=Diplom.DiplomSeries}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="3"
+                                 materialDesign:HintAssist.Hint="Номер диплома"
+                                                     Text="{Binding Path=Diplom.DiplomNumber}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <ToggleButton Grid.Row="3" Grid.Column="6"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          ToolTip="Дубликат"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Row="4"
+                                 materialDesign:HintAssist.Hint="Серия приложения"
+                                                     Text="{Binding Path=Diplom.AttachmentSeries}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="4"
+                                 materialDesign:HintAssist.Hint="Номер приложения"
+                                                     Text="{Binding Path=Diplom.AttachmentNumber}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <ToggleButton Grid.Row="4" Grid.Column="6"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          ToolTip="Дубликат"/>
+                            <DatePicker Grid.Row="5" Grid.ColumnSpan="3"
+                                    VerticalAlignment="Bottom"
+                                    Height="30"
+                                    materialDesign:HintAssist.Hint="Дата решения гос. комиссии"
+                                                        SelectedDate="{Binding Path=Diplom.DecisionDate}"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                            <TextBox Grid.ColumnSpan="5" Grid.Row="5" Grid.Column="4"
+                                 materialDesign:HintAssist.Hint="Квалификация"
+                                                     Text="{Binding Path=Diplom.Qualification}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="7" Grid.Row="6" Grid.Column="0"
+                                 materialDesign:HintAssist.Hint="Специальность"
+                                                     Text="{Binding Path=Diplom.Specialty}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="4" Grid.Row="6" Grid.Column="8"
+                                 materialDesign:HintAssist.Hint="Срок освоения"
+                                                     Text="{Binding Path=Diplom.Lifetime}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="0"
+                                 materialDesign:HintAssist.Hint="Руководитель"
+                                                     IsReadOnly="True"
+                                                     Text="Иванов"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="4"
+                                 materialDesign:HintAssist.Hint="Председатель госкомиссии"
+                                                     IsReadOnly="True"
+                                                     Text="Петров"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="4" Grid.Row="7" Grid.Column="8"
+                                 materialDesign:HintAssist.Hint="Секретарь"
+                                                     IsReadOnly="True"
+                                                     Text="Сидоров"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Курсовые</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGKurs" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=CourseWork, Mode=TwoWay, IsAsync=True}"
+                   AutoGenerateColumns="False"
+                   CanUserAddRows="True"
+                   CanUserResizeColumns="False"
+                   CanUserResizeRows="False"
+                   IsReadOnly="False"
+                   Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding CourseWorkName, Mode=TwoWay}" Width="*"/>
+                            <DataGridTextColumn Header="Оценка" Binding="{Binding Rating, Mode=TwoWay}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Практика</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGPrakt" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=Practice, Mode=TwoWay, IsAsync=True}"
+                                               AutoGenerateColumns="False"
+                                               CanUserAddRows="True"
+                                               CanUserResizeColumns="False"
+                                               CanUserResizeRows="False"
+                                               IsReadOnly="False"
+                                               Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding PracticeName}" Header="Наименование" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding QuantityWeeks}" Header="Общее количество недель" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Госаттестация</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGGoss" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=StateAttestation, Mode=TwoWay, IsAsync=True}"
+                                               AutoGenerateColumns="False"
+                                               CanUserAddRows="True"
+                                               CanUserResizeColumns="False"
+                                               CanUserResizeRows="False"
+                                               IsReadOnly="False"
+                                               Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding StateAttestationName}" Width="*"/>
+                            <DataGridTextColumn Header="Общее количество недель" Binding="{Binding QuantityWeeks}" Width="auto"/>
+                            <DataGridTextColumn Header="Оценка" Binding="{Binding Rating}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Дисциплины</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGDisc" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=Discipline, Mode=TwoWay, IsAsync=True}"
+                                               AutoGenerateColumns="False"
+                                               CanUserAddRows="True"
+                                               CanUserResizeColumns="False"
+                                               CanUserResizeRows="False"
+                                               IsReadOnly="False"
+                                               Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding DisciplineName}" Header="Наименование" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding QuantityHours}" Header="Общее количество часов" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="24, 0">Факультативы</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGFak" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=Electives, Mode=TwoWay, IsAsync=True}"
+                                               AutoGenerateColumns="False"
+                                               CanUserAddRows="True"
+                                               CanUserResizeColumns="False"
+                                               CanUserResizeRows="False"
+                                               IsReadOnly="False"
+                                               Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding ElectivesName}" Header="Наименование" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding QuantityHours}" Header="Общее количество часов" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Style="{StaticResource TabItemStyle}">
+                <TabItem.Header>
+                    <TextBlock Margin="30, 0">Дополнительные сведения</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid  x:Name="DGDop" Grid.Row="1" 
+                                               ItemsSource="{Binding Path=AdditionalInformation, Mode=TwoWay, IsAsync=True}"
+                                               AutoGenerateColumns="False"
+                                               CanUserAddRows="True"
+                                               CanUserResizeColumns="False"
+                                               CanUserResizeRows="False"
+                                               IsReadOnly="False"
+                                               Background="Transparent">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Information}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button
+                            Background="#ff5722"
+                            BorderBrush="#ff5722"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Command="{Binding AttachmentPrintCommand}"
+                            Width="200" Margin="30">Печать приложения</Button>
+            <Button
+                            Background="#ff5722"
+                            BorderBrush="#ff5722"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Command="{Binding DiplomPrintCommand}"
+                            Width="200" Margin="0, 0, 100, 0">Печать диплома</Button>
+            <Button
+                                Background="#ff5722"
+                                BorderBrush="#ff5722"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding SaveCommand}"
+                                Width="100" Margin="30">Сохранить</Button>
+            <Button
+                                
+                                Background="#ff5722"
+                                BorderBrush="#ff5722"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Command="{Binding GoBackCommand}"
+                                Width="100" Margin="0">Отмена</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
