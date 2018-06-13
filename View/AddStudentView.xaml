@@ -157,6 +157,10 @@
                                     Квал3
                                 </ComboBoxItem>
                             </ComboBox>
+                            <TextBox Grid.ColumnSpan="2" Grid.Column="10" Grid.Row="5"
+                                                     materialDesign:HintAssist.Hint="Кол-во аудиторных часов"
+                                                     Text="{Binding Path=Diplom.ClassroomHours}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <!--<TextBox Grid.ColumnSpan="7" Grid.Row="6" Grid.Column="0"
                                                      materialDesign:HintAssist.Hint="Специальность"
                                                      Text="{Binding Path=Diplom.Специальность}"
@@ -201,21 +205,20 @@
                                     Срок3
                                 </ComboBoxItem>
                             </ComboBox>
-                            <!--Добавить настройки-->
                             <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="0"
+                                                     Text="{Binding Leader}"
                                                      materialDesign:HintAssist.Hint="Руководитель"
                                                      IsReadOnly="True"
-                                                     Text="Иванов"
                                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="4"
                                                      materialDesign:HintAssist.Hint="Председатель госкомиссии"
                                                      IsReadOnly="True"
-                                                     Text="Петров"
+                                                     Text="{Binding ChairpersonStateCommission}"
                                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <TextBox Grid.ColumnSpan="4" Grid.Row="7" Grid.Column="8"
                                                      materialDesign:HintAssist.Hint="Секретарь"
                                                      IsReadOnly="True"
-                                                     Text="Сидоров"
+                                                     Text="{Binding Secretary}"
                                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                         </Grid>
                     </Grid>

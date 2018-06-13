@@ -32,11 +32,32 @@ namespace DiplomPrint.ViewModel
         public ICommand DiplomPrintCommand { get; set; }
 
 
-        private ObservableCollection<string> _rating;
-        public ObservableCollection<string> Rating
+        private string _chairpersonStateCommission;
+        public string ChairpersonStateCommission
         {
-            get { return _rating; }
-            set { _rating = value; OnPropertyChanged("Rating"); }
+            get { return _chairpersonStateCommission; }
+            set { _chairpersonStateCommission = value; OnPropertyChanged("ChairpersonStateCommission"); }
+        }
+
+        private string _leader;
+        public string Leader
+        {
+            get { return _leader; }
+            set { _leader = value; OnPropertyChanged("Leader"); }
+        }
+
+        private string _secretary;
+        public string Secretary
+        {
+            get { return _secretary; }
+            set { _secretary = value; OnPropertyChanged("Secretary"); }
+        }
+
+        private ObservableCollection<string> _ratingBase;
+        public ObservableCollection<string> RatingBase
+        {
+            get { return _ratingBase; }
+            set { _ratingBase = value; OnPropertyChanged("RatingBase"); }
         }
 
         private static AddStudentView _addStudentView;
@@ -132,7 +153,7 @@ namespace DiplomPrint.ViewModel
             Discipline = new ObservableCollection<Discipline>();
             Electives = new ObservableCollection<Electives>();
             AdditionalInformation = new ObservableCollection<AdditionalInformation>();
-            Rating = new ObservableCollection<string> { "Отлично", "Хорошо", "Удовлетворительно", "Неудовлетворительно" };
+            RatingBase = new ObservableCollection<string> { "Отлично", "Хорошо", "Удовлетворительно", "Неудовлетворительно" };
 
             SaveCommand = new RelayCommand(arg => SaveMethod());
             //AttachmentPrintCommand = new RelayCommand(arg => AttachmentPrintMethod());
@@ -149,7 +170,10 @@ namespace DiplomPrint.ViewModel
             Discipline = new ObservableCollection<Discipline>();
             Electives = new ObservableCollection<Electives>();
             AdditionalInformation = new ObservableCollection<AdditionalInformation>();
-            Rating = new ObservableCollection<string> { "Отлично", "Хорошо", "Удовлетворительно", "Неудовлетворительно" };
+            RatingBase = new ObservableCollection<string> { "Отлично", "Хорошо", "Удовлетворительно", "Неудовлетворительно" };
+            ChairpersonStateCommission = Properties.Settings.Default.ChairpersonStateCommission;
+            Leader = Properties.Settings.Default.Leader;
+            Secretary = Properties.Settings.Default.Secretary;
 
             foreach (var item in Diplom.StateAtt) { StateAttestation.Add(item); }
             foreach (var item in Diplom.Discipline) { Discipline.Add(item); }
@@ -178,6 +202,7 @@ namespace DiplomPrint.ViewModel
                 foreach (var item in CourseWork) { Diplom.CourseWork.Add(item); }
                 foreach (var item in Practice) { Diplom.Practice.Add(item); }
                 foreach (var item in Electives) { Diplom.Electives.Add(item); }
+                Diplom.Secession = Properties.Settings.Default.Secession;
                 DB.SaveChanges();
                 System.Windows.Forms.MessageBox.Show("Изменение прошло успешно");
                 GoBack();
@@ -216,6 +241,8 @@ namespace DiplomPrint.ViewModel
             string name = fio[1];
             string otch = fio[2];
 
+            
+
             string obraz = "";
             switch (Diplom.ExcellentAttribute)
             {
@@ -249,8 +276,10 @@ namespace DiplomPrint.ViewModel
                     form.SetFieldProperty("Otchestvo", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("Otchestvo", otch);
 
-                    //разобраться с датой
-                    //form.SetFieldWithFont(templateReader, fonts, "DR", mouthSelect[0] + mouthName + mouthSelect[2] + " года");
+                    string BirthDateMouth;
+                    MouthSelect(Diplom.BirthDate.Month, out BirthDateMouth);
+                    form.SetFieldProperty("DR", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
+                    form.SetField("DR", Diplom.BirthDate.Day + " " + BirthDateMouth + Diplom.BirthDate.Year + " года");
 
                     form.SetFieldWithFont(templateReader, fonts, "lvlObrazovaniya", Diplom.PreviousLevelEducation);
 
@@ -263,9 +292,11 @@ namespace DiplomPrint.ViewModel
                     form.SetFieldProperty("regNomer", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("regNomer", Diplom.RegistrationNumber.ToString());
 
-                    //разобраться с датой
-                    //form.SetFieldProperty("dateVidachi", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
-                    //form.SetField("dateVidachi", mouthSelect1[0] + mouthName1 + mouthSelect1[2] + " года");
+
+                    string DecisionDateMouth;
+                    MouthSelect(Diplom.BirthDate.Month, out DecisionDateMouth);
+                    form.SetFieldProperty("dateVidachi", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
+                    form.SetField("dateVidachi", Diplom.DecisionDate.Day + " " + DecisionDateMouth +  Diplom.ExtraditionDate.Year + " года");
 
                     form.SetFieldProperty("srokOsvoeniya", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("srokOsvoeniya", Diplom.Lifetime);
@@ -317,9 +348,10 @@ namespace DiplomPrint.ViewModel
                     form.SetFieldWithFont(templateReader, fonts, "discOcenka" + roundCount, "X");
 
                     roundCount = roundCount + 1;
-                    //доделать аудиторные часы
-                    //form.SetFieldWithFont(templateReader, fonts, "disc" + roundCount, "в том числе аудиторных часов:");
-                    //form.SetFieldWithFont(templateReader, fonts, "discHour" + roundCount, Diplom);
+
+                    form.SetFieldWithFont(templateReader, fonts, "disc" + roundCount, "в том числе аудиторных часов:");
+                    form.SetFieldWithFont(templateReader, fonts, "discHour" + roundCount, Diplom.ClassroomHours);
+
                     form.SetFieldWithFont(templateReader, fonts, "discOcenka" + roundCount, "X");
 
                     int allWeek = 0;
@@ -390,6 +422,50 @@ namespace DiplomPrint.ViewModel
             Process.Start(Environment.CurrentDirectory + @"\resultAttachment.pdf");
         }
 
+        private void MouthSelect (int MouthNumber, out string MouthName)
+        {
+            MouthName = "";
+            switch (MouthNumber)
+            {
+                case 1:
+                    MouthName = "января ";
+                    return;
+                case 2:
+                    MouthName = "февраля ";
+                    return;
+                case 3:
+                    MouthName = "марта ";
+                    return;
+                case 4:
+                    MouthName = "апреля ";
+                    return;
+                case 5:
+                    MouthName = "мая ";
+                    return;
+                case 6:
+                    MouthName = "июня ";
+                    return;
+                case 7:
+                    MouthName = "июля ";
+                    return;
+                case 8:
+                    MouthName = "августа ";
+                    return;
+                case 9:
+                    MouthName = "сентября ";
+                    return;
+                case 10:
+                    MouthName = "октября ";
+                    return;
+                case 11:
+                    MouthName = "ноября ";
+                    return;
+                case 12:
+                    MouthName = "декабря ";
+                    return;
+            }
+        }
+
         private void DiplomPrintMethod()
         {
             var pdfTemplate = @"templateDiplom.pdf";
@@ -411,16 +487,18 @@ namespace DiplomPrint.ViewModel
                     form.SetFieldProperty("regNomer", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("RegNum", Diplom.RegistrationNumber.ToString());
 
-                    //разобраться с датой
-                    //form.SetFieldProperty("dateVidachi", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
-                    //form.SetField("dateVidachi", mouthSelect1[0] + mouthName1 + mouthSelect1[2] + " года");
+                    string ExtraditionDateMouth;
+                    MouthSelect(Diplom.ExtraditionDate.Month, out ExtraditionDateMouth);
+                    form.SetFieldProperty("VidachaDate", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
+                    form.SetField("VidachaDate", Diplom.ExtraditionDate.Day + " " + ExtraditionDateMouth + Diplom.ExtraditionDate.Year + " года");
 
                     form.SetFieldProperty("spec", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("Spec", Diplom.Specialty);
 
-                    //разобраться с датой
-                    //form.SetFieldProperty("dateResh", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
-                    //form.SetField("dateResh", mouthSelect1[0] + mouthName1 + mouthSelect1[2] + " года");
+                    string DecisionDateMouth;
+                    MouthSelect(Diplom.DecisionDate.Month, out DecisionDateMouth);
+                    form.SetFieldProperty("ReshDate", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
+                    form.SetField("ReshDate", Diplom.DecisionDate.Day + " " + DecisionDateMouth + Diplom.DecisionDate.Year + " года");
 
                     form.SetFieldProperty("predsed", "TimesNewRoman", BaseFont.COURIER_BOLD, null);
                     form.SetField("PredsedName", "Сидоров");

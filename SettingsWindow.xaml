@@ -15,28 +15,36 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBox Width="600" Foreground="White"
+            <TextBox x:Name="txtChairpersonStateCommission" Width="600" Foreground="White"
                                  materialDesign:HintAssist.Hint="Председатель госкомиссии"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBox Width="600" Foreground="White"
+            <TextBox x:Name="txtLeader" Width="600" Foreground="White"
                                  materialDesign:HintAssist.Hint="Руководитель"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBox Width="600" Foreground="White"
+            <TextBox x:Name="txtSecretary" Width="600" Foreground="White"
                                  materialDesign:HintAssist.Hint="Секретарь"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBox x:Name="txtSecession" Width="600" Foreground="White"
+                                 materialDesign:HintAssist.Hint="Отделение"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        </StackPanel>
         <Button
-            Grid.Row="3"
+            x:Name="SaveButton"
+            Grid.Row="4"
             HorizontalAlignment="Right"
             Background="#ff5722"
             BorderBrush="#ff5722"
+            Click="SaveButton_Click"
             Style="{StaticResource MaterialDesignRaisedButton}"
-            Width="200" Margin="30">Сохранить</Button>
+            Width="200" Margin="30, 0">Сохранить</Button>
     </Grid>
 </Window>

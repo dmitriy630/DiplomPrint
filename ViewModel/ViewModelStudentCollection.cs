@@ -69,7 +69,7 @@ namespace DiplomPrint.ViewModel
         {
             IKernel ninjectKernel = new StandardKernel(new NinjectConfigurationModule());
             DB = ninjectKernel.Get<StudentContext>();
-            DB0 = new ObservableCollection<Student>(DB.Student);
+            DB0 = new ObservableCollection<Student>(DB.Student.Where(x => x.Secession == Properties.Settings.Default.Secession));
             AddStudentCommand = new DelegateCommand(AddStudentMethod);
             EditStudentCommand = new DelegateCommand(EditStudentMethod);
             ExitCommand = new RelayCommand(arg => ExitMethod());

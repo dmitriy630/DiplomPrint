@@ -23,5 +23,26 @@ namespace DiplomPrint
         {
             InitializeComponent();
         }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.ChairpersonStateCommission = txtChairpersonStateCommission.Text;
+                Properties.Settings.Default.Leader = txtLeader.Text;
+                Properties.Settings.Default.Secretary = txtSecretary.Text;
+                Properties.Settings.Default.Secession = txtSecession.Text;
+                Properties.Settings.Default.Save();
+                System.Windows.Forms.MessageBox.Show("Настройки сохранены.");
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("При сохранении настроек произошел сбой, обратитесь к системному администратору.");
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
     }
 }

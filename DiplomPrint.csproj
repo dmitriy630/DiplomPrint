@@ -141,6 +141,14 @@
     <Compile Include="Migrations\201806130129101_Secession.Designer.cs">
       <DependentUpon>201806130129101_Secession.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806130336251_ClassroomHours.cs" />
+    <Compile Include="Migrations\201806130336251_ClassroomHours.Designer.cs">
+      <DependentUpon>201806130336251_ClassroomHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806130342569_ClassroomHoursString.cs" />
+    <Compile Include="Migrations\201806130342569_ClassroomHoursString.Designer.cs">
+      <DependentUpon>201806130342569_ClassroomHoursString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modules\AcroFieldsExtension.cs" />
     <Compile Include="Modules\Helpers\InitializeViewHelper.cs" />
@@ -239,6 +247,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806130129101_Secession.resx">
       <DependentUpon>201806130129101_Secession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806130336251_ClassroomHours.resx">
+      <DependentUpon>201806130336251_ClassroomHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806130342569_ClassroomHoursString.resx">
+      <DependentUpon>201806130342569_ClassroomHoursString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

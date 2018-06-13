@@ -105,5 +105,7 @@ namespace DiplomPrint.Model
 
         [Required]
         public string Secession { get; set; }
+
+        public string ClassroomHours { get; set; }
     }
 }

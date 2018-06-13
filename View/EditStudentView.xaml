@@ -51,96 +51,176 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.ColumnSpan="7" Grid.Row="0"
-                                                 x:Name="fioTxt"
-                                 materialDesign:HintAssist.Hint="Фамилия Имя Отчество"
-                                                     Text="{Binding Path=Diplom.FullName}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                    materialDesign:HintAssist.Hint="Фамилия Имя Отчество"
+                                                    Text="{Binding Path=Diplom.FullName}"
+                                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <DatePicker Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="4"
-                                    VerticalAlignment="Bottom"
-                                    Height="25"
-                                    materialDesign:HintAssist.Hint="Дата рождения"
-                                                        SelectedDate="{Binding Path=Diplom.BirthDate}"
-                                                        
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                            <TextBox Grid.ColumnSpan="12" Grid.Row="1"
-                                 materialDesign:HintAssist.Hint="Документ о предшествующем уровне образовании"
-                                                     Text="{Binding Path=Diplom.PreviousLevelEducation}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                    VerticalAlignment="Bottom"
+                                                    SelectedDateFormat="Long"
+                                                    Height="25"
+                                                    materialDesign:HintAssist.Hint="Дата рождения"
+                                                    SelectedDate="{Binding Path=Diplom.BirthDate}"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                            <ComboBox Grid.ColumnSpan="12" Grid.Row="1"
+                                                    VerticalAlignment="Bottom"
+                                                    materialDesign:HintAssist.Hint="Документ о предшествующем уровне образовании"
+                                                    IsEditable="True"
+                                                    Text="{Binding Path=Diplom.PreviousLevelEducation}">
+                                <ComboBoxItem>
+                                    Аттестат0
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Аттестат1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Аттестат2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Аттестат3
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <!--<TextBox Grid.ColumnSpan="12" Grid.Row="1"
+                                                     materialDesign:HintAssist.Hint="Документ о предшествующем уровне образовании"
+                                                     Text="{Binding Path=Diplom.Документ_о_предшествующем_уровне_образовании}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>-->
                             <TextBox Grid.ColumnSpan="4" Grid.Row="2"
-                                 materialDesign:HintAssist.Hint="Регистрационный номер"
+                                                     materialDesign:HintAssist.Hint="Регистрационный номер"
                                                      Text="{Binding Path=Diplom.RegistrationNumber}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <DatePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2"
-                                    VerticalAlignment="Bottom"
-                                    Height="30"
-                                    materialDesign:HintAssist.Hint="Дата выдачи"
-                                                        SelectedDate="{Binding Path=Diplom.ExtraditionDate}"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                                    VerticalAlignment="Bottom"
+                                                    Height="30"
+                                                    SelectedDateFormat="Long"
+                                                    materialDesign:HintAssist.Hint="Дата выдачи"
+                                                    SelectedDate="{Binding Path=Diplom.ExtraditionDate}"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                             <ToggleButton Grid.Row="2" Grid.Column="8"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Bottom"
-                                                          IsChecked="{Binding Path=Diplom.ExcellentAttribute}"
-                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                          ToolTip="Отличие"/>
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Bottom"
+                                                      IsChecked="{Binding Path=Diplom.ExcellentAttribute}"
+                                                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                      ToolTip="Отличие"/>
                             <TextBox Grid.ColumnSpan="3" Grid.Row="3"
-                                 materialDesign:HintAssist.Hint="Серия диплома"
+                                                     materialDesign:HintAssist.Hint="Серия диплома"
                                                      Text="{Binding Path=Diplom.DiplomSeries}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                            <TextBox Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="3"
-                                 materialDesign:HintAssist.Hint="Номер диплома"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Column="4" Grid.Row="3"
+                                                     materialDesign:HintAssist.Hint="Номер диплома"
                                                      Text="{Binding Path=Diplom.DiplomNumber}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <!--Допилить дубликат
                             <ToggleButton Grid.Row="3" Grid.Column="6"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Bottom"
-                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                          ToolTip="Дубликат"/>
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Bottom"
+                                                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                      ToolTip="Дубликат"/>-->
                             <TextBox Grid.ColumnSpan="3" Grid.Row="4"
-                                 materialDesign:HintAssist.Hint="Серия приложения"
+                                                     materialDesign:HintAssist.Hint="Серия приложения"
                                                      Text="{Binding Path=Diplom.AttachmentSeries}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                            <TextBox Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="4"
-                                 materialDesign:HintAssist.Hint="Номер приложения"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox Grid.ColumnSpan="3" Grid.Column="4" Grid.Row="4"
+                                                     materialDesign:HintAssist.Hint="Номер приложения"
                                                      Text="{Binding Path=Diplom.AttachmentNumber}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <!--Добавить дубликат
                             <ToggleButton Grid.Row="4" Grid.Column="6"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Bottom"
-                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                          ToolTip="Дубликат"/>
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Bottom"
+                                                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                      ToolTip="Дубликат"/>-->
                             <DatePicker Grid.Row="5" Grid.ColumnSpan="3"
-                                    VerticalAlignment="Bottom"
-                                    Height="30"
-                                    materialDesign:HintAssist.Hint="Дата решения гос. комиссии"
+                                                        VerticalAlignment="Bottom"
+                                                        Height="30"
+                                                        materialDesign:HintAssist.Hint="Дата решения гос. комиссии"
+                                                        SelectedDateFormat="Long"
                                                         SelectedDate="{Binding Path=Diplom.DecisionDate}"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                            <TextBox Grid.ColumnSpan="5" Grid.Row="5" Grid.Column="4"
-                                 materialDesign:HintAssist.Hint="Квалификация"
-                                                     Text="{Binding Path=Diplom.Qualification}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                            <TextBox Grid.ColumnSpan="7" Grid.Row="6" Grid.Column="0"
-                                 materialDesign:HintAssist.Hint="Специальность"
-                                                     Text="{Binding Path=Diplom.Specialty}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                            <TextBox Grid.ColumnSpan="4" Grid.Row="6" Grid.Column="8"
-                                 materialDesign:HintAssist.Hint="Срок освоения"
-                                                     Text="{Binding Path=Diplom.Lifetime}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                                        />
+                            <!--<TextBox Grid.ColumnSpan="5" Grid.Row="5" Grid.Column="4"
+                                                     materialDesign:HintAssist.Hint="Квалификация"
+                                                     Text="{Binding Path=Diplom.Квалификация}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>-->
+                            <ComboBox Grid.ColumnSpan="5" Grid.Row="5" Grid.Column="4"
+                                                    VerticalAlignment="Bottom"
+                                                    materialDesign:HintAssist.Hint="Квалификация"
+                                                    IsEditable="True"
+                                                    Text="{Binding Path=Diplom.Qualification}">
+                                <ComboBoxItem>
+                                    Квал0
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Квал1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Квал2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Квал3
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <TextBox Grid.ColumnSpan="2" Grid.Column="10" Grid.Row="5"
+                                                     materialDesign:HintAssist.Hint="Кол-во аудиторных часов"
+                                                     Text="{Binding Path=Diplom.ClassroomHours}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <!--<TextBox Grid.ColumnSpan="7" Grid.Row="6" Grid.Column="0"
+                                                     materialDesign:HintAssist.Hint="Специальность"
+                                                     Text="{Binding Path=Diplom.Специальность}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>-->
+                            <ComboBox Grid.ColumnSpan="7" Grid.Row="6" Grid.Column="0"
+                                                    VerticalAlignment="Bottom"
+                                                    materialDesign:HintAssist.Hint="Специальность"
+                                                    IsEditable="True"
+                                                    Text="{Binding Path=Diplom.Specialty}">
+                                <ComboBoxItem>
+                                    Спец0
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Спец1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Спец2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Спец3
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <!--<TextBox Grid.ColumnSpan="4" Grid.Row="6" Grid.Column="8"
+                                                     materialDesign:HintAssist.Hint="Срок освоения"
+                                                     Text="{Binding Path=Diplom.Срок_освоения}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>-->
+                            <ComboBox Grid.ColumnSpan="4" Grid.Row="6" Grid.Column="8"
+                                                    VerticalAlignment="Bottom"
+                                                    materialDesign:HintAssist.Hint="Срок освоения"
+                                                    IsEditable="True"
+                                                    Text="{Binding Path=Diplom.Lifetime}">
+                                <ComboBoxItem>
+                                    Срок0
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Срок1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Срок2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Срок3
+                                </ComboBoxItem>
+                            </ComboBox>
                             <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="0"
-                                 materialDesign:HintAssist.Hint="Руководитель"
+                                                     Text="{Binding Leader}"
+                                                     materialDesign:HintAssist.Hint="Руководитель"
                                                      IsReadOnly="True"
-                                                     Text="Иванов"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="4"
-                                 materialDesign:HintAssist.Hint="Председатель госкомиссии"
+                                                     materialDesign:HintAssist.Hint="Председатель госкомиссии"
                                                      IsReadOnly="True"
-                                                     Text="Петров"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Text="{Binding ChairpersonStateCommission}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                             <TextBox Grid.ColumnSpan="4" Grid.Row="7" Grid.Column="8"
-                                 materialDesign:HintAssist.Hint="Секретарь"
+                                                     materialDesign:HintAssist.Hint="Секретарь"
                                                      IsReadOnly="True"
-                                                     Text="Сидоров"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                     Text="{Binding Secretary}"
+                                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -160,8 +240,11 @@
                    Background="Transparent">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Наименование" Binding="{Binding CourseWorkName, Mode=TwoWay}" Width="*"/>
-                            <DataGridTextColumn Header="Оценка" Binding="{Binding Rating, Mode=TwoWay}" Width="100"/>
+                            <materialDesign:MaterialDataGridTextColumn Binding="{Binding CourseWorkName, Mode=TwoWay}"
+                                                                                   Width="*"
+                                                                                   Header="Наименование" />
+                            <materialDesign:MaterialDataGridComboBoxColumn Header="Оценка" SelectedValueBinding="{Binding Rating, Mode=TwoWay}" Width="300"
+                                                                                       ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.RatingBase}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem.Content>
@@ -183,7 +266,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding PracticeName}" Header="Наименование" Width="*"/>
                             <DataGridTextColumn Binding="{Binding QuantityWeeks}" Header="Общее количество недель" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                            <materialDesign:MaterialDataGridComboBoxColumn Header="Оценка" SelectedValueBinding="{Binding Rating, Mode=TwoWay}" Width="100"
+                                                                                       ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.RatingBase}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem.Content>
@@ -205,7 +289,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Наименование" Binding="{Binding StateAttestationName}" Width="*"/>
                             <DataGridTextColumn Header="Общее количество недель" Binding="{Binding QuantityWeeks}" Width="auto"/>
-                            <DataGridTextColumn Header="Оценка" Binding="{Binding Rating}" Width="100"/>
+                            <materialDesign:MaterialDataGridComboBoxColumn Header="Оценка" SelectedValueBinding="{Binding Rating, Mode=TwoWay}" Width="100"
+                                                                                       ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.RatingBase}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem.Content>
@@ -227,7 +312,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding DisciplineName}" Header="Наименование" Width="*"/>
                             <DataGridTextColumn Binding="{Binding QuantityHours}" Header="Общее количество часов" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                            <materialDesign:MaterialDataGridComboBoxColumn Header="Оценка" SelectedValueBinding="{Binding Rating, Mode=TwoWay}" Width="100"
+                                                                                       ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.RatingBase}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem.Content>
@@ -249,7 +335,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding ElectivesName}" Header="Наименование" Width="*"/>
                             <DataGridTextColumn Binding="{Binding QuantityHours}" Header="Общее количество часов" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding Rating}" Header="Оценка" Width="100"/>
+                            <materialDesign:MaterialDataGridComboBoxColumn Header="Оценка" SelectedValueBinding="{Binding Rating, Mode=TwoWay}" Width="100"
+                                                                                       ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.RatingBase}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem.Content>

@@ -22,6 +22,27 @@ namespace DiplomPrint.ViewModel
         public ICommand SaveCommand { get; set; }
         #endregion
 
+        private string _chairpersonStateCommission;
+        public string ChairpersonStateCommission
+        {
+            get { return _chairpersonStateCommission; }
+            set { _chairpersonStateCommission = value; OnPropertyChanged("ChairpersonStateCommission"); }
+        }
+
+        private string _leader;
+        public string Leader
+        {
+            get { return _leader; }
+            set { _leader = value; OnPropertyChanged("Leader"); }
+        }
+
+        private string _secretary;
+        public string Secretary
+        {
+            get { return _secretary; }
+            set { _secretary = value; OnPropertyChanged("Secretary"); }
+        }
+
         private static AddStudentView _addStudentView;
         public static AddStudentView addStudentView
         {
@@ -123,6 +144,9 @@ namespace DiplomPrint.ViewModel
             Electives = new ObservableCollection<Electives>();
             AdditionalInformation= new ObservableCollection<AdditionalInformation>();
             RatingBase = new ObservableCollection<string> { "Отлично", "Хорошо", "Удовлетворительно", "Неудовлетворительно" };
+            ChairpersonStateCommission = Properties.Settings.Default.ChairpersonStateCommission;
+            Leader = Properties.Settings.Default.Leader;
+            Secretary = Properties.Settings.Default.Secretary;
 
 
             SaveCommand = new RelayCommand(arg => SaveMethod());
@@ -144,6 +168,7 @@ namespace DiplomPrint.ViewModel
                 foreach (var item in CourseWork) { Diplom.CourseWork.Add(item); }
                 foreach (var item in Practice) { Diplom.Practice.Add(item); }
                 foreach (var item in Electives) { Diplom.Electives.Add(item); }
+                Diplom.Secession = Properties.Settings.Default.Secession;
                 DB.Student.Add(Diplom);
                 DB.SaveChanges();
                 System.Windows.Forms.MessageBox.Show("Добавление прошло успешно");

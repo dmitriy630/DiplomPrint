@@ -65,3 +65,5 @@ C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\LoadWindow.baml
 C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\DiplomPrint.Migrations.Install.resources
 C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\DiplomPrint.Migrations.DeepClone.resources
 C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\DiplomPrint.Migrations.Secession.resources
+C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\DiplomPrint.Migrations.ClassroomHours.resources
+C:\Users\dima6\source\repos\DiplomPrint\DiplomPrint\obj\Debug\DiplomPrint.Migrations.ClassroomHoursString.resources
