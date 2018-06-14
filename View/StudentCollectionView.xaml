@@ -44,6 +44,7 @@
             <Button Content="Редактировать" Margin="20,5,20,5" Command="{Binding  EditStudentCommand}"/>
             <Button Content="Копировать" Margin="20,5,20,5" Command="{Binding CopyCommand}"/>
             <Button Content="Удалить" Margin="20,5,20,5" Command="{Binding DeleteStudentCommand}"/>
+            <Button Content="Обновить" Margin="20,5,20,5" Command="{Binding RefreshCommand}"/>
             <Button Content="Выход из программы" Margin="20,5,20,5" Command="{Binding ExitCommand}"/>
         </StackPanel>
     </Grid>

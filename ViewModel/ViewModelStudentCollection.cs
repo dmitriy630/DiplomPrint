@@ -61,20 +61,32 @@ namespace DiplomPrint.ViewModel
         public ICommand CopyCommand { get; set; }
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
         #endregion
 
+        bool FirstStart;
 
         #region Ctors
         public ViewModelStudentCollection()
         {
-            IKernel ninjectKernel = new StandardKernel(new NinjectConfigurationModule());
-            DB = ninjectKernel.Get<StudentContext>();
-            DB0 = new ObservableCollection<Student>(DB.Student.Where(x => x.Secession == Properties.Settings.Default.Secession));
+            if (Properties.Settings.Default.Secession == "")
+            {
+                SettingsWindow settingsWindow = new SettingsWindow();
+                settingsWindow.Show();
+                FirstStart = true;
+            }
+            else
+            {
+                IKernel ninjectKernel = new StandardKernel(new NinjectConfigurationModule());
+                DB = ninjectKernel.Get<StudentContext>();
+                DB0 = new ObservableCollection<Student>(DB.Student.Where(x => x.Secession == Properties.Settings.Default.Secession));
+            }
             AddStudentCommand = new DelegateCommand(AddStudentMethod);
             EditStudentCommand = new DelegateCommand(EditStudentMethod);
             ExitCommand = new RelayCommand(arg => ExitMethod());
             DeleteStudentCommand = new RelayCommand(arg => DeleteStudentMethod());
             CopyCommand = new RelayCommand(arg => CopyStudentMethod());
+            RefreshCommand = new RelayCommand(arg => RefreshDG());
         }
         #endregion
         /// <summary>
@@ -94,6 +106,13 @@ namespace DiplomPrint.ViewModel
         /// </summary>
         private void RefreshDG()
         {
+            if (FirstStart == true)
+            {
+                IKernel ninjectKernel = new StandardKernel(new NinjectConfigurationModule());
+                DB = ninjectKernel.Get<StudentContext>();
+                DB0 = new ObservableCollection<Student>(DB.Student.Where(x => x.Secession == Properties.Settings.Default.Secession));
+                FirstStart = false;
+            }
             DB0.Clear();
             var studentCollection = DB.Student;
             foreach (var item in studentCollection)

@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Practices.Prism.Regions;
 using DiplomPrint.Modules;
 using DiplomPrint.Pages;
+using System.Threading;
 
 namespace DiplomPrint.ViewModel
 {
