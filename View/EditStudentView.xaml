@@ -67,16 +67,16 @@
                                                     IsEditable="True"
                                                     Text="{Binding Path=Diplom.PreviousLevelEducation}">
                                 <ComboBoxItem>
-                                    Аттестат0
+                                    Аттестат об основном общем образовании
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Аттестат1
+                                    Диплом ДГТУ
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Аттестат2
+                                    Диплом ЮФУ
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Аттестат3
+                                    Диплом МГУ
                                 </ComboBoxItem>
                             </ComboBox>
                             <!--<TextBox Grid.ColumnSpan="12" Grid.Row="1"
@@ -146,16 +146,13 @@
                                                     IsEditable="True"
                                                     Text="{Binding Path=Diplom.Qualification}">
                                 <ComboBoxItem>
-                                    Квал0
+                                    Техник по компьютерным системам
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Квал1
+                                    Техник по компьютерным сетям
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Квал2
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    Квал3
+                                    Техник-программист
                                 </ComboBoxItem>
                             </ComboBox>
                             <TextBox Grid.ColumnSpan="2" Grid.Column="10" Grid.Row="5"
@@ -172,16 +169,13 @@
                                                     IsEditable="True"
                                                     Text="{Binding Path=Diplom.Specialty}">
                                 <ComboBoxItem>
-                                    Спец0
+                                    Компьютерные системы и комплексы
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Спец1
+                                    Компьютерные сети
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Спец2
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    Спец3
+                                    Программирование в компьютерных системах
                                 </ComboBoxItem>
                             </ComboBox>
                             <!--<TextBox Grid.ColumnSpan="4" Grid.Row="6" Grid.Column="8"
@@ -194,16 +188,10 @@
                                                     IsEditable="True"
                                                     Text="{Binding Path=Diplom.Lifetime}">
                                 <ComboBoxItem>
-                                    Срок0
+                                    2 года 10 месяцев
                                 </ComboBoxItem>
                                 <ComboBoxItem>
-                                    Срок1
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    Срок2
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    Срок3
+                                    3 года 10 месяцев
                                 </ComboBoxItem>
                             </ComboBox>
                             <TextBox Grid.ColumnSpan="3" Grid.Row="7" Grid.Column="0"

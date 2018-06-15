@@ -22,6 +22,10 @@ namespace DiplomPrint
         public SettingsWindow()
         {
             InitializeComponent();
+            txtChairpersonStateCommission.Text = Properties.Settings.Default.ChairpersonStateCommission;
+            txtLeader.Text = Properties.Settings.Default.Leader;
+            txtSecretary.Text = Properties.Settings.Default.Secretary;
+            txtSecession.Text = Properties.Settings.Default.Secession;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

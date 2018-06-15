@@ -33,9 +33,20 @@
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBox x:Name="txtSecession" Width="600" Foreground="White"
-                                 materialDesign:HintAssist.Hint="Отделение"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <ComboBox x:Name="txtSecession" Width="600" Foreground="White"
+                                                    VerticalAlignment="Bottom"
+                                                    materialDesign:HintAssist.Hint="Отделение"
+                                                    IsEditable="True">
+                <ComboBoxItem>
+                    Информационных технологий
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Промышленных технологий и экономики
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Радиоэлектроники
+                </ComboBoxItem>
+            </ComboBox>
         </StackPanel>
         <Button
             x:Name="SaveButton"
